@@ -3,6 +3,7 @@ var startLoopTime = null;
 var endLoopTime = null;
 var isLooping = false;
 var loopCounter = 0;
+var loopedSection = null;
 var loopButton = player.controlBar.addChild('button', {}, 1); // Add loop button
 
 // loopButton.el().innerHTML = '<span class="vjs-icon-repeat"></span>';
@@ -18,11 +19,13 @@ loopButton.on('click', function () {
         startLoopTime = null;
         endLoopTime = null;
         loopCounter = 0; // Reset the loop counter
+        loopedSection.remove();
     } else if (!isLooping) {
         startLoopTime = player.currentTime();
         isLooping = true;
     } else if (startLoopTime !== null) {
         endLoopTime = player.currentTime();
+        updateLoopedSection();
     }
 });
 
@@ -34,4 +37,20 @@ player.on('timeupdate', function () {
         }
     }
 });
+
+function updateLoopedSection() {
+    console.log('section updated!');
+    if (startLoopTime !== null && endLoopTime !== null) {
+        const progressBarWidth = player.controlBar.progressControl.seekBar.el().offsetWidth;
+        const startPercentage = (startLoopTime / player.duration()) * 100;
+        const endPercentage = (endLoopTime / player.duration()) * 100;
+        
+        loopedSection = document.createElement('div');
+        loopedSection.className = 'looped-section';
+        loopedSection.style.left = startPercentage + '%';
+        loopedSection.style.width = (endPercentage - startPercentage) + '%';
+        
+        player.controlBar.progressControl.seekBar.el().appendChild(loopedSection);
+    }
+}
 

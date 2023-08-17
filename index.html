@@ -4,29 +4,78 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DanSee</title>
-        <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+        <link href="https://vjs.zencdn.net/7.12.0/video-js.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
         <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
-        <script src="https://vjs.zencdn.net/8.3.0/video.js"></script>
+        <script src="https://vjs.zencdn.net/7.12.0/video.js"></script>
     </head>
 
-    <header>
-        <h1>DanSee</h1>
-    </header>
-
     <body>
-        <video id = "videoPlayer" class = "video-js" width = "960" controls data-setup = "{}">
-            <source src = "Sacrifice (Eat Me Up) - Enhypen (Dance Practice).mp4" type = "video/mp4">
-            <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a
-                web browser that
-                <a href="https://videojs.com/html5-video-support/" target="_blank"
-                  >supports HTML5 video</a
-                >
-            </p>
-        </video>
-        <script type="text/javascript" src="video-player.js"></script>
-        <script type="text/javascript" src="playbackSpeed.js"></script>
-        <script type="text/javascript" src="loop.js"></script>
+        <section id="top-section">
+            <header>
+                <h1>DanSee</h1>
+            </header>
+        </section>
+
+        <section id="link-input" class="link-container">
+            <div class="upload-container">
+
+                <div class="upload-container">Upload Video</div>
+
+                <div class="input-container">
+                    <input type="text" id="youtubeLink" name="Link: " placeholder="(Ex.) https://www.youtube.com/watch?v=Rf3v-O5kjHY">
+                    <button id="goButton">Go!</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="video-section">
+            <video
+                id="videoPlayer"
+                class="video-js"
+                controls
+                preload="auto"
+                data-setup="{}">
+            </video>
+        </section>
+
+        <section id="speed-slider">
+            <div class="slider">
+                    <label for="speedSlider">Playback Speed </label>
+                    <input type="range" min="0.25" max="2" value="1" id="speedSlider" step="0.25" list="speedOptions">
+                    <datalist id="speedOptions">
+                            <option>0.25</option>
+                            <option>0.50</option>
+                            <option>0.75</option>
+                            <option>1.0</option>
+                            <option>1.25</option>
+                            <option>1.50</option>
+                            <option>1.75</option>
+                            <option>2.0</option>
+                    </datalist>
+                    <div class="tick-labels">
+                        <label class="label">0.25x</label>
+                        <label class="label">0.50x</label>
+                        <label class="label">0.75x</label>
+                        <label class="label">1x</label>
+                        <label class="label">1.25x</label>
+                        <label class="label">1.50x</label>
+                        <label class="label">1.75x</label>
+                        <label class="label">2x</label>
+                    </div>
+            </div> 
+        </section>
+
+        <section id="bottom-section">
+            <header>
+                <h1>Let's stay in touch!</h1>
+            </header>
+        </section>
+        <script type="text/javascript" src="../dansee-website/video-player.js"></script>
+        <script type="text/javascript" src="../dansee-website/playbackSpeed.js"></script>
+        <script type="text/javascript" src="../dansee-website/loop.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"></script>
     </body>
 </html>
