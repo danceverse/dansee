@@ -6,6 +6,8 @@ var player = videojs('videoPlayer', {
 
 document.getElementById('goButton').addEventListener('click', function () {
     var youtubeLink = document.getElementById('youtubeLink').value;
+    const slider = document.querySelector(".slider");
+    slider.style.transform = "translateY(35%)";
 
     player.src({
         type: 'video/youtube',

@@ -7,7 +7,7 @@ var loopedSection = null;
 var loopButton = player.controlBar.addChild('button', {}, 1); // Add loop button
 
 // loopButton.el().innerHTML = '<span class="vjs-icon-repeat"></span>';
-loopButton.el().innerHTML = '<i class="material-icons">loop</i>';
+loopButton.el().innerHTML = '<img id="loopIcon" class="loop-icon" src="icons/Unselected.svg" alt="Loop Icon">';
 loopButton.el().style.fontSize = '1.5em';
 
 loopButton.on('click', function () {
@@ -20,12 +20,15 @@ loopButton.on('click', function () {
         endLoopTime = null;
         loopCounter = 0; // Reset the loop counter
         loopedSection.remove();
+        loopButton.el().querySelector('.loop-icon').src = "icons/Unselected.svg";
     } else if (!isLooping) {
         startLoopTime = player.currentTime();
         isLooping = true;
+        loopButton.el().querySelector('.loop-icon').src = "icons/Start Selected.svg";
     } else if (startLoopTime !== null) {
         endLoopTime = player.currentTime();
         updateLoopedSection();
+        loopButton.el().querySelector('.loop-icon').src = "icons/Looped.svg";
     }
 });
 

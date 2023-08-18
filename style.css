@@ -2,11 +2,22 @@ body {
     margin: 0;
     font-family: 'Rubik', sans-serif;
     font-size: 30px;
+    min-height: 100vh;
+    flex-direction: column;
+    display: flex;
 }
 
 #videoPlayer.video-js {
     width: 854px;
     height: 480px;
+    
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .videoPlayer-dimensions.vjs-fluid {
@@ -27,7 +38,11 @@ body {
     height: 100px;
     background-color: #FEA5B0;
     display: flex;
-    margin: 0;
+    position: relative;
+    top: 0;
+    margin-bottom: 200px;
+    margin-top: 100px; /* Distance from video element + desired spacing */
+    transform: translateY(-100%);
 }
 
 .link-container {
@@ -37,10 +52,35 @@ body {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    margin-top: 85px;
-    margin-bottom: 150px;
-    margin-left: 18vw;
+
+
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* top: calc(100% - 200px - 210px); */
+} 
+
+
+.slider {
+    position: relative;
+    width: 500px;
+    height: 60px;
+    padding: 30px;
+    padding-left: 40px;
+    background: #fcfcfc;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 15px 40px #7E6D5766;
+    margin: auto;
+    transform: translateY(-175%);
 }
+
+
+
+
 
 .upload-container {
     display: flex;
@@ -75,24 +115,16 @@ body {
 }
 
 
-
-.slider {
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 500px;
-    height: 60px;
-    padding: 30px;
-    padding-left: 40px;
-
-    background: #fcfcfc;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 15px 40px #7E6D5766;
+.loop-icon {
+    width: 30px;
+    height: 30px;
 }
+
+
+
+
+
+
 
 .slider label {
     font-size: 24px;
@@ -110,7 +142,7 @@ body {
 
 .tick-labels {
     position: absolute;
-    bottom: 25px; /* Adjust this value as needed */
+    bottom: 25px;
     left: 170px;
     width: 65%;
     display: flex;
@@ -127,8 +159,13 @@ body {
 
 #bottom-section {
     width: 100%;
-    height: 300px;
+    height: 500px;
     background-color: #FEA5B0;
     display: flex;
-    margin: 0;
+    align-items: flex-top;
+    justify-content: left;
+    position: absolute;
+    /* bottom: 0; */
+    /* top: calc(100% - 200px + 200px); */
+    transform: translateY(165%);
 }
