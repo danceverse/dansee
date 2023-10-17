@@ -8,7 +8,9 @@ var loopButton = player.controlBar.addChild('button', {}, 1); // Add loop button
 
 // loopButton.el().innerHTML = '<span class="vjs-icon-repeat"></span>';
 loopButton.el().innerHTML = '<img id="loopIcon" class="loop-icon" src="icons/Unselected.svg" alt="Loop Icon">';
+loopButton.el().setAttribute('title', 'Loop Section');
 loopButton.el().style.fontSize = '1.5em';
+loopButton.el().style.cursor = 'pointer';
 
 loopButton.on('click', function () {
     console.log('you just clicked the button!');

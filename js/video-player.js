@@ -1,19 +1,18 @@
 var player = videojs('videoPlayer', {
     fluid: true,
     aspectRatio: '16:9',
-    sources: []
+    sources: [],
+    //playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
 });
 
 document.getElementById('goButton').addEventListener('click', function () {
     var youtubeLink = document.getElementById('youtubeLink').value;
-    const slider = document.querySelector(".slider");
-    slider.style.transform = "translateY(35%)";
 
     player.src({
         type: 'video/youtube',
         src: youtubeLink
     });
 
-    document.getElementById('link-input').style.display = 'none';
-    document.getElementById('video-section').style.display = 'flex';
+    document.querySelector('.link-upload-overlay').style.display = 'none';
+    document.querySelector('.video-section').style.display = 'flex';
 });
