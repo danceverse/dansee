@@ -25,9 +25,6 @@
 
 .video-section {
     position: relative;
-    top: 50%;
-    left: 45%;
-    transform: translate(-50%, -50%);
     width: 90%;
     max-width: 1920px;
     margin: 0 auto;
