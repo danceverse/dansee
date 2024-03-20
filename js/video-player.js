@@ -2,7 +2,14 @@ var player = videojs('videoPlayer', {
     fluid: true,
     aspectRatio: '16:9',
     sources: [],
+    playsinline: true,
+    webkitPlaysinline: true,
     //playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
+    controlBar: {
+        volumePanel: {
+            inline: false,
+        },
+    },
 });
 
 document.getElementById('goButton').addEventListener('click', function () {

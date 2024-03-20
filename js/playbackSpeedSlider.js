@@ -22,15 +22,22 @@ var valueDisplay = document.createElement('span');
 valueDisplay.className = 'slider-value';
 valueDisplay.textContent = speedSlider.value;
 
+var isDragging = false;
+
 speedSlider.addEventListener('touchstart', function (e) {
   // Prevent the default touchmove behavior (scrolling)
   e.preventDefault();
-  document.body.classList.add('disable-scroll');
-});
+  isDragging = true;
+}, { passive: false });
+
+document.addEventListener('touchmove', function(e) {
+  if (isDragging) {
+    e.preventDefault();
+  }
+}, { passive: false });
 
 speedSlider.addEventListener('touchend', function () {
-  // Remove the class to re-enable scrolling
-  document.body.classList.remove('disable-scroll');
+  isDragging = false;
 });
 
 

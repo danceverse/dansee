@@ -113,7 +113,7 @@
     position: absolute;
     top: -80px;
     right: -44.5px;
-    writing-mode: vertical-lr;
+    /* writing-mode: vertical-lr; */
     transform: rotate(-90deg);
     width: 130px;
     background: #2B333F;
