@@ -4,7 +4,7 @@ import Component from './Slider Imports/component.js';
 import * as Dom from './Slider Imports/dom.js';
 import {clamp} from './Slider Imports/num.js';
 import {IS_IOS, IS_ANDROID} from './Slider Imports/browser.js';
-class SpeedSliderTest extends Slider {
+class SpeedBar extends Slider {
  
     constructor(player, options) {
         // Calling the constructor of parent class (Slider)
@@ -59,7 +59,29 @@ class SpeedSliderTest extends Slider {
      * @listens mousemove
      */
     handleMouseMove(event) {
-        const mousePlaybackRateDisplay // WHERE YOU LEFT OFF //
+        const mousePlaybackRateDisplay = this.getChild('mousePlaybackRateDisplay'); // WHERE YOU LEFT OFF //
+
+        if (mousePlaybackRateDisplay) {
+            const speedBarEl = this.el();
+            const speedBarRect = Dom.getBoundingClientRect(speedBarEl);
+            const vertical = this.vertical();
+            let speedBarPoint = Dom.getPointerPosition(speedBarEl, event);
+
+            speedBarPoint = vertical ? speedBarPoint.y : speedBarPoint.x;
+            // The default skin has a gap on either side of the `SpeedBar`. This means
+            // that it's possible to trigger this behavior outside the boundaries of
+            // the `SpeedBar`. This ensures we stay within it at all times.
+            speedBarPoint = clamp(speedBarPoint, 0, 1);
+            mousePlaybackRateDisplay.update(speedBarRect, speedBarPoint, vertical);
+        }
+
+        if (!Dom.isSingleLeftClick(event)) {
+            return;
+        }
+
+        // might need to like console.log this shit or sum cuz i have no idea what range of values the
+        // calculateDistance thing returns and we may need to scale the value appropriately
+        this.player_.playbackRate(this.calculateDistance(event));
     }
 
     /**
@@ -95,3 +117,31 @@ class SpeedSliderTest extends Slider {
         });
     }
 }
+
+/**
+ * Default options for the `SpeedBar`
+ *
+ * @type {Object}
+ * @private
+ */
+SpeedBar.prototype.options_ = {
+    children: [
+      'speedLevel'
+    ],
+    barName: 'speedLevel'
+};
+  
+// MouseVolumeLevelDisplay tooltip should not be added to a player on mobile devices
+if (!IS_IOS && !IS_ANDROID) {
+  SpeedBar.prototype.options_.children.splice(0, 0, 'mousePlaybackRateDisplay');
+}
+  
+/**
+ * Call the update event for this Slider when this event happens on the player.
+ *
+ * @type {string}
+ */
+SpeedBar.prototype.playerEvent = 'speedchange';
+  
+Component.registerComponent('SpeedBar', SpeedBar);
+export default SpeedBar;
