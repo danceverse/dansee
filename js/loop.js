@@ -35,10 +35,12 @@ loopButton.on('click', function () {
 });
 
 player.on('timeupdate', function () {
-    console.log('the player tryna loop rn!');
+    var currentTime = player.currentTime();
     if (isLooping && startLoopTime !== null && endLoopTime !== null) {
-        if (player.currentTime() >= endLoopTime) {
-            player.currentTime(startLoopTime);
+        if (currentTime > endLoopTime) {
+            _.debounce(() => {
+                player.currentTime(startLoopTime);
+                }, 100)();
         }
     }
 });
